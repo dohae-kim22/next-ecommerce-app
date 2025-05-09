@@ -64,7 +64,7 @@ const LoginClient = () => {
               />
               <label htmlFor="autoSignIn">Remember Me</label>
             </div>
-            <a>Forgot Password {">"}</a>
+            <Link href={"/reset"}>Forgot Password {">"}</Link>
           </div>
           <div className={styles.buttonGroup}>
             <button type="submit">Sign In</button>
@@ -78,7 +78,7 @@ const LoginClient = () => {
               />
               Sign In with Google
             </button>
-            <button>
+            <button className={styles.secondaryButton}>
               <Link href={"/register"}>Create Account</Link>
             </button>
           </div>

@@ -55,7 +55,7 @@ const RegisterClient = () => {
 
           <div className={styles.buttonGroup}>
             <button type="submit">Sign Up</button>
-            <button className={styles.loginButton}>
+            <button className={styles.secondaryButton}>
               <Link href={"/login"}>Sign In</Link>
             </button>
           </div>
