@@ -89,6 +89,17 @@
           border-radius: 50%;
         }
       }
+
+      .loginButton {
+        background-color: var(--color-white);
+        color: var(--color-primary);
+        font-weight: 600;
+        border: 2px solid var(--color-primary);
+
+        &:hover {
+          background-color: var(--color-primary-light-transparent);
+        }
+      }
     }
   }
 }

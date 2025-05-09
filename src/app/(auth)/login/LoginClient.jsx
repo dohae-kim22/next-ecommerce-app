@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import styles from "./LoginClient.module.scss";
+import styles from "./Auth.module.scss";
 import Image from "next/image";
 import LogoPath from "@/assets/shop-logo.png";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/loader/Loader";
+import Link from "next/link";
 
 const LoginClient = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ const LoginClient = () => {
 
   return (
     <>
-      <Loader />
+      {isLoading && <Loader />}
       <section className={styles.page}>
         <div>
           <h1>
@@ -40,19 +41,34 @@ const LoginClient = () => {
 
         <form className={styles.form} onSubmit={loginUser}>
           <div className={styles.inputGroup}>
-            <input type="email" placeholder="E-mail" />
-            <input type="password" placeholder="Password" />
+            <input
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           <div className={styles.optionGroup}>
             <div className={styles.checkbox}>
-              <input type="checkbox" id="autoSignIn" />
+              <input
+                type="checkbox"
+                id="autoSignIn"
+                checked={isAutoLogin}
+                onChange={(e) => setIsAutoLogin(e.target.checked)}
+              />
               <label htmlFor="autoSignIn">Remember Me</label>
             </div>
             <a>Forgot Password {">"}</a>
           </div>
           <div className={styles.buttonGroup}>
-            <button>Sign In</button>
-            <button>
+            <button type="submit">Sign In</button>
+            <button onClick={signInWithGoogle}>
               <Image
                 src="https://developers.google.com/identity/images/g-logo.png"
                 alt="Google logo"
@@ -62,7 +78,9 @@ const LoginClient = () => {
               />
               Sign In with Google
             </button>
-            <button>Create Account</button>
+            <button>
+              <Link href={"/register"}>Create Account</Link>
+            </button>
           </div>
         </form>
       </section>
