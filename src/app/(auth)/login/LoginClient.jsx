@@ -1,11 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./LoginClient.module.scss";
 import Image from "next/image";
 import LogoPath from "@/assets/shop-logo.png";
+import { useRouter } from "next/navigation";
 
 const LoginClient = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAutoLogin, setIsAutoLogin] = useState(false);
+
+  const router = useRouter();
+
+  const redirectUser = () => {
+    router.push("/");
+  };
+
+  const loginUser = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+  };
+
+  const signInWithGoogle = () => {
+    setIsLoading(true);
+  };
+
   return (
     <section className={styles.page}>
       <div>
@@ -14,7 +35,7 @@ const LoginClient = () => {
         </h1>
       </div>
 
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={loginUser}>
         <div className={styles.inputGroup}>
           <input type="email" placeholder="E-mail" />
           <input type="password" placeholder="Password" />
