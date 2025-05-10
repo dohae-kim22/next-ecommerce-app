@@ -7,6 +7,9 @@ import LogoPath from "@/assets/shop-logo.png";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/loader/Loader";
 import Link from "next/link";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase/firebase";
+import { toast } from "react-toastify";
 
 const LoginClient = () => {
   const [email, setEmail] = useState("");
@@ -23,6 +26,20 @@ const LoginClient = () => {
   const loginUser = (e) => {
     e.preventDefault();
     setIsLoading(true);
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        if (user) {
+          setIsLoading(false);
+          toast.success("Login successful");
+          redirectUser();
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        setIsLoading(false);
+      });
   };
 
   const signInWithGoogle = () => {
