@@ -7,7 +7,11 @@ import LogoPath from "@/assets/shop-logo.png";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/loader/Loader";
 import Link from "next/link";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "@/firebase/firebase";
 import { toast } from "react-toastify";
 
@@ -43,7 +47,18 @@ const LoginClient = () => {
   };
 
   const signInWithGoogle = () => {
-    setIsLoading(true);
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        if (user) {
+          toast.success("Login successful");
+          redirectUser();
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -85,7 +100,7 @@ const LoginClient = () => {
           </div>
           <div className={styles.buttonGroup}>
             <button type="submit">Sign In</button>
-            <button onClick={signInWithGoogle}>
+            <button type="button" onClick={signInWithGoogle}>
               <Image
                 src="https://developers.google.com/identity/images/g-logo.png"
                 alt="Google logo"
@@ -95,7 +110,7 @@ const LoginClient = () => {
               />
               Sign In with Google
             </button>
-            <button className={styles.secondaryButton}>
+            <button type="button" className={styles.secondaryButton}>
               <Link href={"/register"}>Create Account</Link>
             </button>
           </div>
