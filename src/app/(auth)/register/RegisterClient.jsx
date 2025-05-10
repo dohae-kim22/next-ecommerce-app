@@ -7,6 +7,9 @@ import { useRouter } from "next/navigation";
 import Loader from "@/components/loader/Loader";
 import Link from "next/link";
 import styles from "../login/Auth.module.scss";
+import { toast } from "react-toastify";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase/firebase";
 
 const RegisterClient = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +21,23 @@ const RegisterClient = () => {
 
   const registerUser = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+    }
     setIsLoading(true);
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User registered:", user);
+        setIsLoading(false);
+        toast.success("Registered successfully!");
+        router.push("/login");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -49,7 +68,7 @@ const RegisterClient = () => {
               type="password"
               placeholder="Confirm Password"
               value={confirmPassword}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
 
