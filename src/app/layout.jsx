@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/toastProvider/ToastProvider";
 import ReduxProvider from "@/redux/ReduxProvider";
+import Footer from "@/layouts/footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
         <ReduxProvider>
           <ToastProvider />
           {children}
+          <Footer />
         </ReduxProvider>
       </body>
     </html>
