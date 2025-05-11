@@ -3,6 +3,7 @@ import "./globals.css";
 import ToastProvider from "@/components/toastProvider/ToastProvider";
 import ReduxProvider from "@/redux/ReduxProvider";
 import Footer from "@/layouts/footer/Footer";
+import Header from "@/layouts/header/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ReduxProvider>
+          <Header />
           <ToastProvider />
           {children}
           <Footer />

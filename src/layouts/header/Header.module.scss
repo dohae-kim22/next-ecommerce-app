@@ -1,0 +1,27 @@
+.loginBar {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.list {
+  display: flex;
+  gap: 15px;
+  margin: 0 auto;
+  width: 1020px;
+  list-style: none;
+  padding: 10px 0;
+
+  .item {
+    &:first-child {
+      flex-grow: 1;
+    }
+
+    a {
+      font-size: 13px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
