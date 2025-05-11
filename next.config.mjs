@@ -7,6 +7,10 @@ const nextConfig = {
         hostname: "developers.google.com",
         pathname: "/identity/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
   },
 };

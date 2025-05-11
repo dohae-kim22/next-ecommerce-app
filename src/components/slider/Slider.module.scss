@@ -1,0 +1,79 @@
+.slider {
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--color-dark);
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+
+  &.current {
+    opacity: 1;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+
+    &.left {
+      animation-name: slideFromLeft;
+    }
+
+    &.right {
+      animation-name: slideFromRight;
+    }
+  }
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  color: var(--color-white);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+
+  &.prev {
+    left: 20px;
+  }
+
+  &.next {
+    right: 20px;
+  }
+}
