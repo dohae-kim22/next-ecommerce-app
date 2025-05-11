@@ -1,0 +1,104 @@
+.innerHeader {
+  display: flex;
+  align-items: center;
+  width: 1020px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.buttonCategory {
+  background-image: url("../../assets/hamburger.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px 24px;
+  border: none;
+  width: 100px;
+  height: 100px;
+  color: var(--color-white);
+  background-color: var(--color-primary-dark);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 10px;
+  font-size: 14px;
+}
+
+.logo {
+  display: flex;
+  margin: 0 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  flex: 1;
+
+  input {
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    border-radius: 10px 0 0 10px;
+    border: 2px solid var(--color-primary);
+    padding-left: 20px;
+    font-size: 16px;
+    background-color: var(--color-white);
+    color: var(--color-primary-dark);
+  }
+
+  button {
+    background-image: url("../../assets/search.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.mySpace {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .mySpaceButton {
+    background-image: url("../../assets/my-account.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .cartButton {
+    background-image: url("../../assets/cart.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+  }
+}
