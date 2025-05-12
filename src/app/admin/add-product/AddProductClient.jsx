@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import styles from "./AddProductClient.module.scss";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/loader/Loader";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage, db } from "@/firebase/firebase";
+import { toast } from "react-toastify";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 
 const categories = [
   { id: 1, name: "Electronics" },
@@ -33,13 +37,34 @@ const initialState = {
 
 const AddProductClient = () => {
   const [product, setProduct] = useState({ ...initialState });
-  const [uploadProgress, setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
   const addProduct = (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      // Add new product to Firestore Database
+      addDoc(collection(db, "products"), {
+        name: product.name,
+        imageUrl: product.imageUrl,
+        price: Number(product.price),
+        category: product.category,
+        brand: product.brand,
+        description: product.description,
+        createdAt: Timestamp.now().toDate(),
+      });
+
+      setIsLoading(false);
+      toast.success("Product added successfully");
+      setProduct({ ...initialState });
+      router.push("/admin/all-products");
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -48,7 +73,23 @@ const AddProductClient = () => {
   };
 
   const handleImageChange = (e) => {
-    e.preventDefault();
+    const file = e.target.files[0];
+    // Upload the image to firebase storage
+    const storageRef = ref(storage, `images/${Date.now()}-${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    uploadTask.on(
+      "state_changed",
+      null,
+      (error) => {
+        toast.error(error.message);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setProduct((prev) => ({ ...prev, imageUrl: downloadURL }));
+          toast.success("Image uploaded successfully");
+        });
+      }
+    );
   };
 
   return (
@@ -76,6 +117,7 @@ const AddProductClient = () => {
             required
             onChange={handleImageChange}
           />
+          {product.imageUrl && <p>{product.imageUrl}</p>}
           <label htmlFor="price">Price:</label>
           <input
             type="number"
