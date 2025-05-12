@@ -1,0 +1,41 @@
+.addProduct {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 40px auto;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    label {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    input,
+    textarea,
+    select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid var(--border-gray);
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 15px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--color-primary-dark);
+      }
+    }
+  }
+}
