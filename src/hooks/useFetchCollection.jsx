@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { collection } from "firebase/firestore";
+import React, { useCallback, useEffect, useState } from "react";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { db } from "@/firebase/firebase";
 
 const useFetchCollection = (collectionName) => {
   // This is a custom hook to fetch a collection from Firestore
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const getCollection = () => {
+  const getCollection = useCallback(() => {
     setIsLoading(true);
     try {
       // Fetch collection from Firestore
@@ -22,7 +23,6 @@ const useFetchCollection = (collectionName) => {
           ...doc.data(),
         }));
 
-        // console.log(allData);
         setData(allData);
         setIsLoading(false);
       });
@@ -30,7 +30,7 @@ const useFetchCollection = (collectionName) => {
       setIsLoading(false);
       toast.error(error.message);
     }
-  };
+  }, [collectionName]);
 
   useEffect(() => {
     getCollection();
