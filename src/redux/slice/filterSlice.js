@@ -55,11 +55,31 @@ const filterSlice = createSlice({
       tempProducts = tempProducts.filter((product) => product.price <= price);
       state.filteredProducts = tempProducts;
     },
+    sortProducts: (state, action) => {
+      const { products, sort } = action.payload;
+      let tempProducts = [];
+      if (sort === "latest") {
+        tempProducts = products
+          .slice()
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      } else if (sort === "lowest-price") {
+        tempProducts = products.slice().sort((a, b) => a.price - b.price);
+      } else if (sort === "highest-price") {
+        tempProducts = products.slice().sort((a, b) => b.price - a.price);
+      }
+
+      state.filteredProducts = tempProducts;
+    },
   },
 });
 
-export const { filterByCategory, filterByBrand, filterByPrice, filterBy } =
-  filterSlice.actions;
+export const {
+  filterByCategory,
+  filterByBrand,
+  filterByPrice,
+  filterBy,
+  sortProducts,
+} = filterSlice.actions;
 
 export const selectFilteredProducts = (state) => state.filter.filteredProducts;
 
