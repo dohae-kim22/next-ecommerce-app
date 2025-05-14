@@ -6,9 +6,19 @@ import Link from "next/link";
 import Image from "next/image";
 import LogoPath from "@/assets/shop-logo.png";
 import { FaUserCircle } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { selectProducts } from "@/redux/slice/productSlice";
+import { filterBySearch } from "@/redux/slice/filterSlice";
 
 const InnerHeader = () => {
   const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  const products = useSelector(selectProducts);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(filterBySearch({ products, search }));
+  };
 
   return (
     <div className={styles.innerHeader}>
@@ -25,7 +35,7 @@ const InnerHeader = () => {
       </h1>
 
       {/* Search form */}
-      <form action="" className={styles.searchForm}>
+      <form action="" className={styles.searchForm} onSubmit={handleSubmit}>
         <input
           type="text"
           className={styles.searchInput}
@@ -33,7 +43,7 @@ const InnerHeader = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button type="button" className={styles.searchButton} />
+        <button type="submit" className={styles.searchButton} />
       </form>
 
       {/* My account dropdown */}
