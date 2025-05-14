@@ -22,7 +22,7 @@ const ProductItem = ({ id, name, price, brand, imageUrl }) => {
           <p className={styles.brand}>{brand}</p>
         </div>
         <div className={styles.priceSection}>
-          <p className={styles.price}>{price}</p>
+          <p className={styles.price}>{price.toLocaleString("fr-FR")}</p>
           <span className={styles.unit}>€</span>
         </div>
         <div>
