@@ -1,0 +1,61 @@
+.productListSection {
+  width: 100%;
+}
+
+.productControls {
+  display: flex;
+  height: 35px;
+  background-color: var(--color-primary);
+  align-items: center;
+  color: white;
+  padding: 0 10px;
+
+  .radioButtonList {
+    flex-grow: 1;
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+
+    label {
+      cursor: pointer;
+    }
+
+    input {
+      position: absolute;
+      visibility: hidden;
+    }
+
+    .activeRadio {
+      position: relative;
+      font-weight: 700;
+      color: #94d82d;
+      margin-left: 10px;
+
+      &::before {
+        content: "";
+        background-image: url(../../../assets/check.svg);
+        background-size: 10px;
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        top: 2px;
+        left: -12px;
+      }
+    }
+  }
+
+  select {
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+    color: var(--color-white);
+    background-color: transparent;
+  }
+}
+
+.productList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: var(--color-white);
+}
