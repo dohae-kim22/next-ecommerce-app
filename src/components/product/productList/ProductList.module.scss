@@ -1,5 +1,6 @@
 .productListSection {
   width: 100%;
+  border-radius: 6px;
 }
 
 .productControls {
@@ -9,6 +10,7 @@
   align-items: center;
   color: white;
   padding: 0 10px;
+  border-radius: 6px 6px 0 0;
 
   .radioButtonList {
     flex-grow: 1;
@@ -58,4 +60,15 @@
   justify-content: space-around;
   flex-wrap: wrap;
   background-color: var(--color-white);
+  border-radius: 0 0 6px 6px;
+
+  .noProduct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
 }

@@ -13,8 +13,6 @@ const ProductList = () => {
   const [productPerPage, setProductPerPage] = useState(10);
 
   const filteredProducts = useSelector(selectFilteredProducts);
-  console.log(filteredProducts);
-  console.log(sort);
   const dispatch = useDispatch();
 
   const indexOfLastProduct = currentPage * productPerPage;
@@ -93,7 +91,9 @@ const ProductList = () => {
       </div>
       <div className={styles.productList}>
         {currentProducts.length === 0 ? (
-          <p>No products available</p>
+          <div className={styles.noProduct}>
+            <p>No products available</p>
+          </div>
         ) : (
           <>
             {currentProducts.map((product) => (
