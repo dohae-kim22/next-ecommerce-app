@@ -95,7 +95,9 @@ const ProductFilter = () => {
           max={maxPrice}
         />
       </div>
-      <button onClick={clearFilters}>Reset Filters</button>
+      <button className={styles.resetButton} onClick={clearFilters}>
+        Reset Filters
+      </button>
     </div>
   );
 };

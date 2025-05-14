@@ -1,8 +1,11 @@
 .filter {
   h4 {
     font-size: 16px;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin: 10px 0;
+  }
+
+  p {
+    font-size: 14px;
   }
 
   .category {
@@ -25,6 +28,7 @@
     .active {
       position: relative;
       padding-left: 15px;
+      font-weight: 600;
     }
 
     .active::before {
@@ -45,6 +49,26 @@
       border: 2px solid var(--border-gray);
       border-radius: 3px;
       outline: none;
+    }
+  }
+
+  .price {
+    input {
+      width: 80%;
+    }
+  }
+
+  .resetButton {
+    padding: 8px;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    width: 100%;
+    margin: 10px 0;
+
+    &:hover {
+      background-color: var(--color-primary-dark);
     }
   }
 }
