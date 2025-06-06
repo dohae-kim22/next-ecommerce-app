@@ -1,0 +1,43 @@
+.main {
+  background-color: var(--light-gray);
+
+  .productDetails {
+    display: flex;
+    gap: 30px;
+    padding: 25px;
+    width: 1050px;
+    margin: 0 auto;
+    min-height: 500px;
+  }
+
+  .imageContainer {
+    background-color: var(--color-white);
+    border-radius: 6px;
+    padding: 10px;
+
+    img {
+      border-radius: 6px;
+    }
+  }
+
+  .productInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: var(--color-white);
+    border-radius: 6px;
+    padding: 15px;
+
+    .brand {
+      font-size: 16px;
+      font-weight: 800px;
+      color: var(--dark-gray);
+    }
+
+    .name {
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: 600;
+    }
+  }
+}
