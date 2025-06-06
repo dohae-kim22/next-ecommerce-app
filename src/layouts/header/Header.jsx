@@ -50,7 +50,7 @@ const Header = () => {
   }
 
   return (
-    <header>
+    <header className={styles.header}>
       <div className={styles.loginBar}>
         <ul className={styles.list}>
           <li className={styles.item}>
