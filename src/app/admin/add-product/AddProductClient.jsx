@@ -54,13 +54,13 @@ const AddProductClient = () => {
         category: product.category,
         brand: product.brand,
         description: product.description,
-        createdAt: Timestamp.now().toDate(),
+        createdAt: Timestamp.now().toDate().toISOString(),
       });
 
       setIsLoading(false);
       toast.success("Product added successfully");
       setProduct({ ...initialState });
-      router.push("/admin/all-products");
+      //   router.push("/admin/all-products");
     } catch (error) {
       setIsLoading(false);
       toast.error(error.message);
@@ -165,7 +165,7 @@ const AddProductClient = () => {
             cols={50}
             value={product.description}
             onChange={handleInputChange}
-          ></textarea>
+          />
           <button type="submit" className={styles.submitButton}>
             Add Product
           </button>
