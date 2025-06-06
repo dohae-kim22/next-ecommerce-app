@@ -61,6 +61,12 @@
   flex-wrap: wrap;
   background-color: var(--color-white);
   border-radius: 0 0 6px 6px;
+  padding: 0 20px;
+
+  // display: grid;
+  // grid-template-columns: repeat(auto-fill, 270px);
+  // gap: 15px;
+  // justify-content: center;
 
   .noProduct {
     display: flex;
